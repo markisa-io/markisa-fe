@@ -1,3 +1,5 @@
+import { ApiEndpointsService } from './core/services/api-endpoints.service';
+import { ApiHttpService } from './core/services/api-http.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -14,7 +16,10 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     LayoutsModule
   ],
-  providers: [],
+  providers: [
+    ApiHttpService,
+    ApiEndpointsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
