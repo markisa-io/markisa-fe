@@ -53,4 +53,30 @@ export class ApiEndpointsService {
   }
 
   /* #endregion URL ENDPOIN */
+
+
+
+  /* EXAMPLES createUrlWithParameters */
+  public geTenantEndpoint(
+    username: string, 
+    tenantName: string
+  ): string {
+    return this.createUrlWithParameters(
+      'tenant', 
+      (qs: QueryStringParameters) => {
+        qs.push('username', username);
+        qs.push('tenantName', tenantName);
+      }
+    );
+  }
+  // result: https://marikisa.io/api/tenant?username=theUsernamen&tenantName=theTenantName
+
+  /* EXAMPLES createUrlWithPathVariables */
+  public geTenantByVarEndpoint(
+    username: string, 
+    tenantName: string
+  ): string {
+    return this.createUrlWithPathVariables('data', [username, tenantName]);
+  }
+  // result: https://markisa.io/api/data/the-username/the-tenantname
 }
