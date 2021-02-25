@@ -12,18 +12,18 @@ export class AppComponent {
   constructor(private authService: AuthService){}
 
   ngOnInit(): void {
-    this.loadCurrentUser();
+    //this.loadCurrentUser();
   }
 
-  loadCurrentUser() {
-    // Get the token from the local storage
-    const token = localStorage.getItem('markisaToken');
+  // loadCurrentUser() {
+  //   // Get the token from the local storage
+  //   const token = localStorage.getItem('markisaToken');
 
-    // Send the token to load the user
-    this.authService.loadCurrentUser(token).subscribe( () => {
-      console.log('loaded user');
-    }, error => {
-      console.log(error);
-    });
-  }
+  //   // Send the token to load the user
+  //   this.authService.loadCurrentUser(token).subscribe( () => {
+  //     console.log('loaded user');
+  //   }, error => {
+  //     console.log(error);
+  //   });
+  // }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -42,13 +43,16 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.controls.password.value;
 
     this.loading = true;
-    this.authService.login(usernameOrEmail, password).subscribe(() => {
+    this.authService.login(usernameOrEmail, password)
+    .pipe(first())
+    .subscribe(
+      data => {
       // When the user is successfully logged in
       // Redirect to the last opened Url
       this.router.navigate([this.returnUrl]);
+      
       this.loading = false;
     }, error => {
-      console.log(error.error);
       this.error = error.error.error_description;
       this.loading = false;
     });

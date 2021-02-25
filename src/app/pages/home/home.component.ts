@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MyProfileService } from '../../core/services/profile/myprofile.service'
+
 
 @Component({
   selector: 'app-page-home',
@@ -8,8 +10,19 @@ import { Component, OnInit } from '@angular/core';
 
 export class HomeComponent implements OnInit {
 
-    constructor() {}
+    constructor(
+      private myProfileService: MyProfileService
+    ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+      this._fetchData();
+    }
+
+    private _fetchData() {
+      return this.myProfileService.getMyProfile()
+        .subscribe(user => {
+          console.log('USER', user)
+        });
+    }
 
 }
