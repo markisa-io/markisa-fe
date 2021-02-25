@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://localhost:44372/'
+  baseUrl: 'https://api.dev.markisa.io/'
 };
