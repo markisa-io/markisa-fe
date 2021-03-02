@@ -1,7 +1,7 @@
+import { ApiHttpService } from './../../core/services/api-http.service';
 import { RegisterResponse, RegisterRequest } from './../../shared/models/account.model';
 import { ApiEndpointsService } from './../../core/services/api-endpoints.service';
-import { ApiHttpService } from './../../core/services/api-http.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,15 +10,18 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private apiHttpService: ApiHttpService, private apiEndpointsService: ApiEndpointsService) { }
+  constructor(private http: HttpClient, private apiEndpointsService:ApiEndpointsService, private apiHttp:ApiHttpService) { }
   
   confirm() {}
   
   reset() {}
 
-  signup(model: RegisterRequest): Observable<RegisterResponse> {
+  signUp(model: RegisterRequest): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(this.apiEndpointsService.getSignupEndpoint(), model);
   }
 
+  sendConfirmation(){
+    
+  }
 
 }

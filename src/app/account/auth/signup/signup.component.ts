@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
     signupForm!: FormGroup;
     submitted = false;
     error = '';
-    registerModel: RegisterRequest = emptyRegisterRequest();
+    registerRequest: RegisterRequest = emptyRegisterRequest();
     registerResponse: RegisterResponse = emptyRegisterResponse();
     apiError: ApiErrorResponse = emptyApiErrorResponse();
 
@@ -51,10 +51,12 @@ export class SignupComponent implements OnInit, AfterViewInit {
         //assign UI value to model
         
         //send the HTTP request
-        this.authService.signup(this.registerModel).subscribe((response) => {
+        this.authService.signUp(this.registerRequest).subscribe((response) => {
             this.registerResponse = response;
         }, (error) => {
             this.apiError = error;
-        })
+        });
+
+        console.log(this.registerResponse);
     };
 }

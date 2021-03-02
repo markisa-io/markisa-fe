@@ -1,10 +1,14 @@
-// Account related models
+/* Account related models */
 
 export interface RegisterRequest {
     userName: string;
     emailAddress: string;
     password: string;
     appName: string;
+    companyName: string;
+    phoneNumber: string;
+    name: string;
+    surName: string;
 }
 
 export function emptyRegisterRequest(): RegisterRequest {
@@ -12,62 +16,84 @@ export function emptyRegisterRequest(): RegisterRequest {
         userName: '',
         emailAddress: '',
         password: '',
-        appName: ''
+        appName: '',
+        companyName: '',
+        phoneNumber: '',
+        name: '',
+        surName: ''
     }
 }
 
-export interface RegisterResponse {
-    tenantId: string;
+export interface RegisterResponse1 {
+    tenantId?: any;
     userName: string;
     name: string;
     surname: string;
     email: string;
     emailConfirmed: boolean;
-    phoneNumber: string;
+    phoneNumber?: any;
+    companyName?: any;
     phoneNumberConfirmed: boolean;
     lockoutEnabled: boolean;
-    lockoutEnd: any;
+    lockoutEnd?: any;
     concurrencyStamp: string;
     isDeleted: boolean;
-    deleterId: string;
-    deletionTime: Date;
+    deleterId?: any;
+    deletionTime?: any;
     lastModificationTime: Date;
-    lastModifierId: string;
+    lastModifierId?: any;
     creationTime: Date;
-    creatorId: string;
+    creatorId?: any;
     id: string;
-    extraProperties: {
-        additionalProp1: any;
-        additionalProp2: any;
-        additionalProp3: any;
-    }
+    extraProperties: any;
+}
+
+export interface RegisterResponse {
+    tenantId?:any;
+    userName:string;
+    name:string;
+    surname:string;
+    email:string;
+    emailConfirmed:boolean;
+    phoneNumber?:any;
+    companyName?:any;
+    phoneNumberConfirmed:boolean;
+    lockoutEnabled:boolean;
+    lockoutEnd?:any;
+    concurrencyStamp:string;
+    isDeleted:boolean;
+    deleterId?:any;
+    deletionTime?:any;
+    lastModificationTime:string;
+    lastModifierId?:any;
+    creationTime:string;
+    creatorId?:any;
+    id:string;
+    extraProperties:{ }
 }
 
 export function emptyRegisterResponse(): RegisterResponse {
     return {
-        tenantId: '',
+        tenantId: null,
         userName: '',
         name: '',
         surname: '',
         email: '',
         emailConfirmed: false,
-        phoneNumber: '',
+        phoneNumber: null,
+        companyName: null,
         phoneNumberConfirmed: false,
         lockoutEnabled: false,
-        lockoutEnd: {},
+        lockoutEnd: null,
         concurrencyStamp: '',
         isDeleted: false,
-        deleterId: '',
-        deletionTime: new Date(),
-        lastModificationTime: new Date(),
+        deleterId: null,
+        deletionTime: null,
+        lastModificationTime:'',
         lastModifierId: '',
-        creationTime: new Date(),
-        creatorId: '',
+        creationTime: '',
+        creatorId: null,
         id: '',
-        extraProperties: {
-            additionalProp1: {},
-            additionalProp2: {},
-            additionalProp3: {},
-        }
+        extraProperties: { }
     }
 }

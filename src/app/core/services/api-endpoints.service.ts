@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { QueryStringParameters } from '../../shared/classes/query-string-parameters';
 import { Constants } from 'src/app/config/constants';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ApiEndpointsService {
   
   constructor(private constants: Constants) { }
@@ -52,6 +50,10 @@ export class ApiEndpointsService {
     return this.createUrl('account/register', isMockApi);
   }
 
+  public getConfirmationEmailEndpoint(isMockApi: boolean = false): string {
+    return this.createUrl('account/send-registration-confirmation-email', isMockApi);
+  }
+
   /* #endregion URL ENDPOIN */
 
 
@@ -69,7 +71,7 @@ export class ApiEndpointsService {
       }
     );
   }
-  // result: https://marikisa.io/api/tenant?username=theUsernamen&tenantName=theTenantName
+  // result: https://api.dev.markisa.io/api/tenant?username=theUsernamen&tenantName=theTenantName
 
   /* EXAMPLES createUrlWithPathVariables */
   public geTenantByVarEndpoint(
@@ -78,5 +80,5 @@ export class ApiEndpointsService {
   ): string {
     return this.createUrlWithPathVariables('data', [username, tenantName]);
   }
-  // result: https://markisa.io/api/data/the-username/the-tenantname
+  // result: https://api.dev.markisa.io/api/data/the-username/the-tenantname
 }
