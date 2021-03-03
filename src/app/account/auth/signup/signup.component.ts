@@ -27,7 +27,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
             email: ['', [Validators.required, Validators.email]],
             fullname: ['', Validators.required],
             companyname: ['', Validators.required],
-            //phone: ['', Validators.pattern('/^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/g')],
+            phone: ['', Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')],
             password: ['', Validators.required]
         });
         
@@ -43,20 +43,73 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
     onSubmit() {
         this.submitted = true;
+        this.apiError = emptyApiErrorResponse();
 
-        console.log("submit");
-    }
+        if (this.signupForm.invalid)
+            return;
 
-    sendSignUpRequest() {
+        //1. Register the User
         //assign UI value to model
-        
+        this.registerRequest.emailAddress = this.signupForm.controls["email"].value;
+        this.registerRequest.userName = this.signupForm.controls["email"].value;
+        this.registerRequest.name = this.signupForm.controls["fullname"].value;
+        this.registerRequest.companyName = this.signupForm.controls["companyname"].value;
+        this.registerRequest.phoneNumber = this.signupForm.controls["phone"].value;
+        this.registerRequest.password = this.signupForm.controls["password"].value;
+        this.registerRequest.appName = "Markisa";
+        this.registerRequest.surName = "";
+
+        console.log(this.registerRequest);
+
         //send the HTTP request
-        this.authService.signUp(this.registerRequest).subscribe((response) => {
-            this.registerResponse = response;
-        }, (error) => {
-            this.apiError = error;
+        this.authService.signUp(this.registerRequest).subscribe((response: RegisterResponse) => {
+            this.registerResponse.tenantId = response.tenantId;
+            this.registerResponse.userName = response.userName;
+            this.registerResponse.name = response.name;
+            this.registerResponse.surname = response.surname;
+            this.registerResponse.email = response.email;
+            this.registerResponse.emailConfirmed = response.emailConfirmed;
+            this.registerResponse.phoneNumber = response.phoneNumber;
+            this.registerResponse.companyName = response.companyName;
+            this.registerResponse.phoneNumberConfirmed = response.phoneNumberConfirmed;
+            this.registerResponse.lockoutEnabled = response.lockoutEnabled;
+            this.registerResponse.lockoutEnd = response.lockoutEnd;
+            this.registerResponse.concurrencyStamp = response.concurrencyStamp;
+            this.registerResponse.isDeleted = response.isDeleted;
+            this.registerResponse.deleterId = response.deleterId;
+            this.registerResponse.deletionTime = response.deletionTime;
+            this.registerResponse.lastModificationTime = response.lastModificationTime;
+            this.registerResponse.lastModifierId = response.lastModifierId;
+            this.registerResponse.creationTime = response.creationTime;
+            this.registerResponse.creatorId = response.creatorId;
+            this.registerResponse.id = response.id;
+            this.registerResponse.extraProperties = response.extraProperties;
+        }, (error: ApiErrorResponse) => {
+            this.apiError.error = error.error;
         });
 
         console.log(this.registerResponse);
-    };
+        console.log(this.apiError);
+
+        //2. Login the registered User automatically (to get token)
+        if (this.apiError.error.code != "")
+            return;
+
+        //this.authService.login(this.registerRequest.userName, this.registerRequest.password).subscribe(() => {
+        //    // When the user is successfully logged in
+        //    // Redirect to the last opened Url
+        //    this.router.navigate([this.returnUrl]);
+        //    this.loading = false;
+        //}, error => {
+        //    console.log(error.error);
+        //    this.error = error.error.error_description;
+        //    this.loading = false;
+        //});
+
+        //3. Send Confirm
+        if (this.apiError.error.code != "")
+            return;
+
+        //this.authService.sendConfirmation(this.registerRequest).subscribe((response: RegisterRequest) => {});
+    }
 }
