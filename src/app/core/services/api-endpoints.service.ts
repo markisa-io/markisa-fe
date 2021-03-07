@@ -54,6 +54,13 @@ export class ApiEndpointsService {
     return this.createUrl('account/send-registration-confirmation-email', isMockApi);
   }
 
+  public getMyProfileEndpoint(isMockApi: boolean = false): string {
+    return this.createUrl('identity/my-profile', isMockApi);
+  }
+
+  public getConnectToken(isMockApi: boolean = false): string {
+    return this.createUrl('connect/token', isMockApi).replace('/api', '');
+  }
   /* #endregion URL ENDPOIN */
 
 

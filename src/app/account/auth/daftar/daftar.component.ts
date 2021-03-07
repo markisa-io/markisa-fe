@@ -27,6 +27,16 @@ export class DaftarComponent implements OnInit {
     console.log("loading daftar");
   }
 
+  login()
+  {
+    this.authService.login('string4', 'String4!').subscribe((resp) => {
+      console.log(resp);
+      this.authService.sendConfirmation();
+    }, error => {
+      console.log(error.error);
+    });
+  }
+
   sendSignUpRequest() {
     //assign UI value to model
     this.registerRequest.userName = 'sudik19';
