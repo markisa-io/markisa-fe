@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { NgForm, NgControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -30,11 +30,17 @@ export class DaftarComponent implements OnInit {
   login()
   {
     this.authService.login('string4', 'String4!').subscribe((resp) => {
-      console.log(resp);
-      this.authService.sendConfirmation();
+      // console.log(resp);
+      
+      
+      // you can do it here or outside the login
+      this.authService.sendRegistrationConfirmationEmail();
     }, error => {
       console.log(error.error);
     });
+
+    // you can also do it here
+    // this.authService.sendConfirmation();
   }
 
   sendSignUpRequest() {

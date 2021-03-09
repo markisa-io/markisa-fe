@@ -50,8 +50,8 @@ export class ApiEndpointsService {
     return this.createUrl('account/register', isMockApi);
   }
 
-  public getConfirmationEmailEndpoint(isMockApi: boolean = false): string {
-    return this.createUrl('account/send-registration-confirmation-email', isMockApi);
+  public getRegistrationConfirmationEmailEndpoint(isMockApi: boolean = false): string {
+    return this.createUrl('app/communication/send-registration-confirmation-email', isMockApi);
   }
 
   public getMyProfileEndpoint(isMockApi: boolean = false): string {

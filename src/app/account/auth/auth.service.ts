@@ -6,7 +6,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, mergeMap } from 'rxjs/operators';
 import { of, ReplaySubject } from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
-import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -27,8 +26,11 @@ export class AuthService {
     return this.http.post<RegisterResponse>(this.apiEndpointsService.getSignupEndpoint(), model);
   }
 
-  sendConfirmation(){
-    return this.http.get(this.apiEndpointsService.getConfirmationEmailEndpoint());
+  sendRegistrationConfirmationEmail(){
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('markisaToken')}`
+    });
+    return this.http.post(this.apiEndpointsService.getRegistrationConfirmationEmailEndpoint(), {}, { headers: headers }).subscribe();
   }
 
   loadCurrentUser(token: string | null) {
