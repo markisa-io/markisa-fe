@@ -1,10 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { ApiHttpService } from './core/services/api-http.service';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiEndpointsService } from './core/services/api-endpoints.service';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { LayoutsModule } from './layouts/layouts.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { Constants } from './config/constants';
 import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
@@ -14,16 +19,22 @@ import { JwtModule } from '@auth0/angular-jwt';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LayoutsModule,
+    LayoutsModule, 
     HttpClientModule,
-    JwtModule.forRoot({
+    FormsModule,
+    ReactiveFormsModule,
+	JwtModule.forRoot({
       config: {
         tokenGetter: function tokenGetter() {
           return localStorage.getItem('markisaToken');}
       }
     })
   ],
-  providers: [],
+  providers: [
+    Constants, 
+    ApiHttpService,
+    ApiEndpointsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

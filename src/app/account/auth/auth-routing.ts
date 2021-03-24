@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { ResetComponent } from './reset/reset.component';
+import { DaftarComponent } from './daftar/daftar.component';
 
 const routes: Routes = [
     {
@@ -22,6 +23,10 @@ const routes: Routes = [
     {
         path: 'reset',
         component: ResetComponent
+    },
+    {
+        path: 'daftar',
+        component: DaftarComponent
     },
 ];
 
