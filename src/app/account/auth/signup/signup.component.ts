@@ -95,21 +95,11 @@ export class SignupComponent implements OnInit, AfterViewInit {
         if (this.apiError.error.code != "")
             return;
 
-        //this.authService.login(this.registerRequest.userName, this.registerRequest.password).subscribe(() => {
-        //    // When the user is successfully logged in
-        //    // Redirect to the last opened Url
-        //    this.router.navigate([this.returnUrl]);
-        //    this.loading = false;
-        //}, error => {
-        //    console.log(error.error);
-        //    this.error = error.error.error_description;
-        //    this.loading = false;
-        //});
-
-        //3. Send Confirm
-        if (this.apiError.error.code != "")
-            return;
-
-        //this.authService.sendConfirmation(this.registerRequest).subscribe((response: RegisterRequest) => {});
+        this.authService.login(this.registerRequest.userName, this.registerRequest.password).subscribe((response) => {
+            //3. Send Confirm
+            this.authService.sendRegistrationConfirmationEmail();
+        }, error => {
+            console.log(error.error);
+        });
     }
 }
