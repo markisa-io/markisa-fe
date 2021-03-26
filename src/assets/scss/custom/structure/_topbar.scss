@@ -231,6 +231,83 @@
     }
 }
 
+
+.setting-list {
+    margin-left: 0;
+
+    .setting-title {
+        background-color: transparent;
+        padding: 7px 20px 15px;
+    }
+
+    .setting-icon {
+        font-size: 21px;
+        vertical-align: middle;
+    }
+
+    .setting-icon-badge {
+        display: inline-block;
+        position: absolute;
+        top: 24px;
+        right: 16px;
+        width: 12px;
+        height: 12px;
+        background-color: $danger;
+        border: 2px solid $bg-topbar-light;
+        border-radius: 50%;
+        box-shadow: $box-shadow-lg;
+        animation: blinker 3s linear infinite;
+        animation-fill-mode: initial;
+    }
+
+    .setting-item {
+        padding: 12px 20px;
+
+        .setting-icon {
+            float: left;
+            height: 36px;
+            width: 36px;
+            font-size: 16px;
+            line-height: 36px;
+            text-align: center;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .setting-details {
+            margin-bottom: 5px;
+            overflow: hidden;
+            margin-left: 45px;
+            white-space: pre-wrap;      /* CSS3 */   
+            white-space: -moz-pre-wrap; /* Firefox */    
+            white-space: -pre-wrap;     /* Opera <7 */   
+            white-space: -o-pre-wrap;   /* Opera 7 */ 
+            color: $gray-800;
+            line-height: 1.5;
+            
+            b {
+                font-weight: 500;
+            }
+            small {
+                display: block;
+            }
+            span {
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-size: 13px;
+            }
+        }
+        
+    }
+    .profile-dropdown-items {
+        .notify-item {
+            padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+        }
+    }
+}
+
 .profile-dropdown {
     display: none;
 }
