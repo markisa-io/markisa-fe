@@ -71,6 +71,47 @@
   
           </div>
         </li>
+
+
+        <li class="dropdown setting-list" placement="left" ngbDropdown>
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript: void(0);" role="button">
+            <i [attr.data-feather]="'settings'" appFeatherIcon></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-lg" ngbDropdownMenu>
+  
+            <!-- item-->
+            <div class="dropdown-item setting-title border-bottom" ngbDropdownItem>
+              <h5 class="m-0 font-size-16">Settings</h5>
+            </div>            
+            <div class="slimscroll noti-scroll" appSlimScroll>
+  
+            <!-- items-->
+            <a routerLink="/settings/users"
+              class="dropdown-item setting-item border-bottom" ngbDropdownItem>
+              <div class="setting-icon" >
+                <i [attr.data-feather]="'users'" appFeatherIcon></i>
+              </div>
+              <p class="setting-details">User Management
+                <small class="text-muted">Add users, groups, and manage access requests</small>
+              </p>
+            </a>
+
+             <!-- items-->
+            <a routerLink="/settings/billing"
+             class="dropdown-item setting-item border-bottom" ngbDropdownItem>
+             <div class="setting-icon" >
+               <i [attr.data-feather]="'dollar-sign'" appFeatherIcon></i>
+             </div>
+             <p class="setting-details">Billing
+               <small class="text-muted">Update your billing details, manage your subscriptions and more.</small>
+             </p>
+           </a>
+
+          </div>
+  
+  
+          </div>
+        </li>
       </ul>
     </div>
   </div>

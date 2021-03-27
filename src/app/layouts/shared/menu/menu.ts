@@ -2,12 +2,12 @@ import { MenuItem } from './menu.model';
 
 export const MENU: MenuItem[] = [
     {
-        label: 'Navigation',
+        label: 'Workplace',
         isTitle: true
     },
     {
-        label: 'Dashboard',
-        icon: 'home',
+        label: 'Tasks',
+        icon: 'file-text',
         link: '/',
         badge: {
             variant: 'success',
@@ -15,17 +15,22 @@ export const MENU: MenuItem[] = [
         }
     },
     {
-        label: 'Menus',
+        label: 'Apps',
         isTitle: true
     },
     {
-        label: 'Menus1',
-        icon: 'file-text',
-        link: '/menus1',
+        label: 'Accounting',
+        icon: 'book-open',
+        link: '/accounting',
     },
     {
-        label: 'Menus2',
-        icon: 'file-text',
+        label: 'Point of Sales',
+        icon: 'shopping-cart',
+        link: '/accounting',
+    },
+    {
+        label: 'Manage Apps',
+        icon: 'settings',
         subItems: [
             {
                 label: 'Sub Menu 1',
